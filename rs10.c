@@ -56,6 +56,7 @@ void handleDT1( long inFileLen )
 		val_b = fgetc( inFile );
 		if( val_b == 0xF7 ) break;
 
+		// assemble 7-bit values to one 12-bit value, then shift to 16-bit range
 		int val = ( (val_a << 5) + (val_b >> 2) ) << 4;
 		
 		putw( val, outFile );
@@ -106,7 +107,8 @@ void handleSysex( long inFileLen )
 	crude command line handling
 	opens file handles to inFile and outFile
 	loop ingests bytes from inFile
-	writing to outFile is handled elsewhere
+	crude wav header to outFile 
+	writing outFile sample data is handled elsewhere
 */
 int main(int argc, char** argv)
 {	
@@ -142,7 +144,7 @@ int main(int argc, char** argv)
 	rewind( inFile );
 	printf("reading %ld bytes from %s...\n", inFileLen, inFilePath);
 
-	// write RIFF WAVE header to output file
+	// crudely write RIFF WAVE header to output file
 	const unsigned short NUM_CHANS = 1;
 	const unsigned short BYTES_PER_SAMPLE = 2;
 	const unsigned short BITS_PER_SAMPLE = 16;
