@@ -2,7 +2,6 @@
 
 The S10 (and the sister products MKS100 and S220) were released before the MIDI SDS (Sample Dump Standard) was developed. This tool helps extract samples from "one way" sample dump data.
 
-- The current version is 0.6. 
 - The tool is for command line use. 
 - Standard libraries are used. 
 - A MacOS Mach-O 64-bit executable (x86_64) is available.
